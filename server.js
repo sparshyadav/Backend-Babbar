@@ -1,7 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const app = express();
+
+mongoose.connect('mongobd://localhost:27017/myDatabase', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 app.use((bodyParser.json()));
 
