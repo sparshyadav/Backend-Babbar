@@ -5,12 +5,12 @@ const todoSchema = new mongoose.Schema(
         title: {
             type: String,
             required: true,
-            maxLenght: 50
+            maxLength: 50
         },
         description: {
             type: String,
             required: true,
-            maxLenght: 100
+            maxLength: 100
         },
         createdAt: {
             type: Date,
@@ -24,3 +24,5 @@ const todoSchema = new mongoose.Schema(
         }
     }
 )
+
+module.exports = mongoose.model("Todo", todoSchema);
