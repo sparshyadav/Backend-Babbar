@@ -7,7 +7,11 @@ const app = express();
 mongoose.connect('mongobd://localhost:27017/myDatabase', {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
+}).then(() => {
+    console.log("Connection Successfull")
+}).catch(() => {
+    console.log("An Error Occurred");
+})
 
 app.use((bodyParser.json()));
 
