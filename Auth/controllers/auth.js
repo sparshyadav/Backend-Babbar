@@ -78,8 +78,10 @@ exports.login = async (req, res) => {
         // Verify Password and Generate a JWT Token
         if (await bcrypt.compare(password, user.password)) {
             let token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "2h" });
-            user.token = token;
-            user.password = undefined;
+            user=user.toObject();
+            user.token=token;
+            user.password=undefined;
+
             const options = {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true
@@ -90,7 +92,7 @@ exports.login = async (req, res) => {
                 token,
                 user,
                 message: "User Logged in Successfully"
-            })
+            });
         }
         else {
             console.log(error);
