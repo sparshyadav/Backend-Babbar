@@ -1,4 +1,5 @@
 const { default: mongoose } = require("mongoose");
+require("dotenv").config();
 
 exports.connectDatabase = async () => {
     try {
@@ -6,11 +7,7 @@ exports.connectDatabase = async () => {
         console.log("Databse Conection Established");
     }
     catch (err) {
+        console.log("An Error Occurred While Establishing Connection with Database");
         console.log(err);
-        res.status(500).json({
-            success: false,
-            data: "Internal Server Error",
-            message: "An Error Occurred While Establishing Connection with Database"
-        })
     }
 }
