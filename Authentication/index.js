@@ -1,10 +1,15 @@
-const express = ("express");
+const { connectDatabase } = require("./config/database");
+const express = require("express");
+const user = require("./routes/user");
 require("dotenv");
 
 const app = express();
-app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
+app.use("/user", user);
+
+connectDatabase();
 app.listen(PORT, () => {
     console.log(`Server Started at PORT ${PORT}`);
 })
