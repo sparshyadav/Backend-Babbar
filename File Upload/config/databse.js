@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv");
+require("dotenv").config;
 
 const connectDatabase = () => {
     mongoose.connect(process.env.DATABASE_URL)
@@ -9,3 +9,5 @@ const connectDatabase = () => {
             console.log(error);
         })
 }
+
+module.exports = connectDatabase;
