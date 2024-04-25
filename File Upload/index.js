@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(fileUpload);
 
-// app.use("/upload", fileRoutes);
+app.use("/upload", fileRoutes);
 
 cloudinaryConnect();
 connectDatabase();
