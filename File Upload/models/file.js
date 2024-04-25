@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-exports.fileSchema = new mongoose.Schema({
+const fileSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -15,3 +15,5 @@ exports.fileSchema = new mongoose.Schema({
         type: String
     }
 })
+
+module.exports = mongoose.model("File", fileSchema);
