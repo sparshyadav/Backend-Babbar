@@ -30,9 +30,10 @@ function isFileTypeSupported(type, supporedTypes) {
     return supporedTypes.includes(type);
 }
 
-async function uploadFileToCloudinary(file, folder) {
+async function uploadFileToCloudinary(file, folder, quality) {
     const options = { folder };
     options.resource_type = "auto";
+    options.quality = quality;
     return await cloudinary.uploader.upload(file.tempFilePath, options);
 }
 
@@ -51,7 +52,7 @@ exports.imageUpload = async (req, res) => {
             })
         }
 
-        const response = await uploadFileToCloudinary(file, "File_Upload");
+        const response = await uploadFileToCloudinary(file, "File_Upload", 60);
         console.log("This is Response - ", response);
         const fileData = await File.create({
             name, tags, email, imageUrl: response.secure_url
@@ -88,7 +89,7 @@ exports.videoUpload = async (req, res) => {
                 message: "File Format not Supported"
             })
         }
-        const response = await uploadFileToCloudinary(file, "File_Upload");
+        const response = await uploadFileToCloudinary(file, "File_Upload", 60);
 
         const fileData = await File.create({
             name, email, tags, imageUrl: response.secure_url
